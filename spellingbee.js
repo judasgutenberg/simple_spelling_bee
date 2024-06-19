@@ -162,3 +162,26 @@ function hideStuff() {
   scoreDiv = document.getElementById("foundwords");
   scoreDiv.style.display = "none";
 }
+
+function handleKeyPress(event) {
+    const key = event.key;
+    //console.log(key);
+    if (hexagonLetters[key.toUpperCase()]) {
+        clickLetter(key.toUpperCase());
+    } else if (buttonKeys[key]) {
+        buttonKeys[key].click();
+    }
+}
+
+function setupButtons() {
+  const buttons = document.querySelectorAll('.buttons button');
+  buttons.forEach(button => {
+      const key = button.getAttribute('data-key');
+      if (key) {
+          buttonKeys[key] = button;
+          button.addEventListener('click', () => {
+          });
+      }
+  });
+}
+
