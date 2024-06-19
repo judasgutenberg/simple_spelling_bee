@@ -24,9 +24,9 @@
         </div>
      <div class="centered-div" id="top-div">
       <div class='buttons'>
-        <button onclick='return(deleteLetter())' >delete</button>
-        <button onclick='return(enterWord())' >enter</button>
-        <button onclick='return(shuffle())' >shuffle</button>
+        <button data-key="Backspace" onclick='return(deleteLetter())' >delete</button>
+        <button data-key="Enter" onclick='return(enterWord())' >enter</button>
+        <button data-key=" " onclick='return(shuffle())' >shuffle</button>
       
       
       
@@ -65,8 +65,8 @@
           echo "let letters = centerLetter + outerLetters.join(\"\") + \";\"" . PHP_EOL;
       }
       ?>
-    
-    
+        const hexagonLetters = {};
+        const buttonKeys = {};
     
         function generateHexagons() {
             let hexagons = document.getElementsByClassName('hexagon');
@@ -103,10 +103,15 @@
                     hexagon.style.backgroundColor = '#eeee99';
                 });
                 container.appendChild(hexagon);
+                hexagonLetters[randomLetter] = hexagon;
             }
         }
 
-        generateHexagons();
+      document.addEventListener('DOMContentLoaded', () => {
+          generateHexagons();
+          setupButtons();
+          document.addEventListener('keydown', handleKeyPress);
+      });
     </script>
 </body>
 </html>
