@@ -61,7 +61,7 @@ function enterWord(){
     }
     score +=  wordScore;
     
-    if(totalScore>0 ) {
+    if(totalScore > 0 ) {
       let fraction = score/ totalScore;
         if (fraction >= 1) {
           level = "Queen Bee";  
