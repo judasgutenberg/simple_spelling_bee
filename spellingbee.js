@@ -63,25 +63,25 @@ function enterWord(){
     
     if(totalScore>0 ) {
       let fraction = score/ totalScore;
-      if(fraction < 0.02) {
-        level = "Good start";
-      } else  if (fraction <= 0.05) {
-        level = "Moving up";
-      } else  if (fraction <= 0.08) {
-        level = "Good";
-      } else  if (fraction <= 0.15) {
-        level = "Solid";
-      } else  if (fraction <= 0.25) {
-        level = "Nice";
-      } else  if (fraction <= 0.40) {
-        level = "Great";   
-      } else  if (fraction <= 0.50) {
-        level = "Amazing"; 
-      } else  if (fraction <= 0.70) {
-        level = "Genius";  
-      } else  if (fraction <= 1) {
-        level = "Queen Bee";  
-      }
+        if (fraction >= 1) {
+          level = "Queen Bee";  
+        } else  if (fraction >= 0.70) {
+          level = "Genius";  
+        } else  if (fraction >= 0.50) {
+          level = "Amazing"; 
+        } else  if (fraction >= 0.40) {
+          level = "Great";  
+        } else  if (fraction >= 0.25) {
+          level = "Nice";
+        } else  if (fraction >= 0.15) {
+          level = "Solid";
+        } else  if (fraction >= 0.08) {
+          level = "Good";
+        } else  if (fraction >= 0.05) {
+          level = "Moving up";
+        } else if(fraction < 0.02) {
+            level = "Good start"
+        }
     }
     scoreDiv.innerHTML = "Score: " + score + " points; Level: " + level;
   } else if (currentWord.toLowerCase().indexOf(centerLetter) == -1) {
