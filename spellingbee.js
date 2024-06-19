@@ -41,7 +41,7 @@ function deleteLetter(letter){
 
 function enterWord(){
   let message = "";
-  let delay = 4000;
+  let delay = 2000;
   if(answers.indexOf(currentWord.toLowerCase()) > -1 && foundWords.indexOf(currentWord.toLowerCase()) ==-1){
   
     foundWords.push(currentWord.toLowerCase()); 
@@ -50,7 +50,7 @@ function enterWord(){
     
     if(panagrams.indexOf(currentWord.toLowerCase()) > -1) {
       message = "You found a panagram! +" + wordScore + " points!";
-      delay = 6000;
+      delay = 3000;
     }
     else
     {
@@ -96,7 +96,7 @@ function enterWord(){
   messageDiv.innerHTML = message;
   messageDiv.style.display = 'block';
   updateFoundWords();
-  setInterval(()=>{
+  setTimeout(()=>{
     messageDiv.style.display = 'none';
   }, delay);
   return false;
