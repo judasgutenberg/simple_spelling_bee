@@ -10,11 +10,14 @@
     <title>Spelling Bee</title>
     <link rel='stylesheet' href='spellingbee.css'>
 <body>
-<div id="message" ></div>
- <div class="centered-div" id="top-div"> 
+
+ <div class="centered-div" id="top-div">
+    <div id="message" ></div>
+    <div id="foundwordslabel" >Words You Have Found</div>
+    <div id="config"><input onchange='updateFoundWords()' type='checkbox' id='sortAlphabetically'/>sort alphabetically</div>
     <div id="foundwords" ></div>
     <div id="score" style='border:1px solid #999999'></div>
-    <div id="currentword" style='border:1px solid #999999'></div>
+    <div id="currentword"></div>
  </div>
  
     <div id="hexagon-container"></div>
