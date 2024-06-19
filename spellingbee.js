@@ -70,15 +70,15 @@ function enterWord(){
         level = "Solid";
       } else  if (fraction <= 0.25) {
         level = "Nice";
-       } else  if (fraction <= 0.40) {
+      } else  if (fraction <= 0.40) {
         level = "Great";   
-       } else  if (fraction <= 0.50) {
+      } else  if (fraction <= 0.50) {
         level = "Amazing"; 
-       } else  if (fraction <= 0.70) {
+      } else  if (fraction <= 0.70) {
         level = "Genius";  
-       } else  if (fraction <= 1) {
+      } else  if (fraction <= 1) {
         level = "Queen Bee";  
-       }
+      }
     }
     scoreDiv.innerHTML = "Score: " + score + " points; Level: " + level;
   } else if (currentWord.toLowerCase().indexOf(centerLetter) == -1) {
