@@ -21,11 +21,14 @@ setTimeout(()=>{
 for(let word of answers){
   totalScore += wordPoints(word);
 }
+hideStuff();
 }, 1000);
   
 function clickLetter(letter){
   currentWord += letter;
-  document.getElementById("currentword").innerHTML = currentWord;
+  let thisDiv = document.getElementById("currentword");
+  thisDiv.innerHTML = currentWord;
+  thisDiv.style.display = "block";
   
 }
 
@@ -96,6 +99,9 @@ function enterWord(){
   messageDiv.innerHTML = message;
   messageDiv.style.display = 'block';
   updateFoundWords();
+  let thisDiv = document.getElementById("currentword");
+  thisDiv.style.display = "none";
+  backToPlay();
   setTimeout(()=>{
     messageDiv.style.display = 'none';
   }, delay);
@@ -110,8 +116,15 @@ function shuffle(){
 
 function updateFoundWords() {
   let foundWordsDiv = document.getElementById("foundwords");
+  let sortAlphabetically = document.getElementById("sortAlphabetically").checked;
   foundWordsDiv.innerHTML = "";
-  for(let word of foundWords){
+  let wordsToShow = [...foundWords]
+
+  if(sortAlphabetically) {
+    wordsToShow = wordsToShow.sort();
+  }
+  console.log(wordsToShow);
+  for(let word of wordsToShow){
     if(panagrams.indexOf(word.toLowerCase()) > -1) {
       foundWordsDiv.innerHTML+= "<div class='panagram'>" + word + "</div>";
     } else {
@@ -130,4 +143,22 @@ function wordPoints(word) {
     points = points + 7;
   }
   return points;
+}
+
+function backToPlay(){
+  let scoreDiv = document.getElementById("score");
+  scoreDiv.style.display = "block";
+  scoreDiv = document.getElementById("message");
+  scoreDiv.style.display = "block";
+  scoreDiv = document.getElementById("foundwords");
+  scoreDiv.style.display = "block";
+}
+
+function hideStuff() {
+  let scoreDiv = document.getElementById("score");
+  scoreDiv.style.display = "none";
+  scoreDiv = document.getElementById("message");
+  scoreDiv.style.display = "none";
+  scoreDiv = document.getElementById("foundwords");
+  scoreDiv.style.display = "none";
 }
