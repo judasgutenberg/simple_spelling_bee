@@ -37,7 +37,30 @@
     
       <?php 
       $url = "https://www.nytimes.com/puzzles/spelling-bee/";
-      $src = file_get_contents($url);
+      $src = getCachedContent($url, "cache.txt");
+    
+      function getCachedContent($url, $cacheFile) {
+          // Get current time and today's date at 4:00 AM
+          $currentTime = time();
+          $earlyToday = strtotime('today 4:00 AM');
+    
+          // If it's already past 4:00 AM today, use that timestamp; otherwise, use 4:00 AM yesterday
+          if ($currentTime < $earlyToday) {
+              $earlyToday = strtotime('yesterday 4:00 AM');
+          }
+          
+          // Check if cache file exists and was modified after 4:00 AM today
+          if (file_exists($cacheFile) && filemtime($cacheFile) > $earlyToday) {
+              // Return cached content
+              return file_get_contents($cacheFile);
+          } else {
+              // Fetch new content and update cache file
+              $content = file_get_contents($url);
+              file_put_contents($cacheFile, $content);
+     
+              return $content;
+          }
+      }
 
       function getValueBetween($haystack, $startStr, $endStr) {
           $startPos = strpos($haystack, $startStr);
