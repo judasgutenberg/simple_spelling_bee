@@ -1,16 +1,3 @@
-function generateHexagons() {
-    const container = document.getElementById('hexagon-container');
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    
-    for (let i = 0; i < 7; i++) {
-        const hexagon = document.createElement('div');
-        hexagon.className = 'hexagon';
-        const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-        hexagon.textContent = randomLetter;
-        container.appendChild(hexagon);
-    }
-}
-
 let currentWord = "";
 let foundWords = [];
 let score = 0;
