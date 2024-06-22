@@ -10,7 +10,55 @@ for(let word of answers){
 }
 hideStuff();
 }, 1000);
-  
+
+
+
+function generateHexagons() {
+    let hexagons = document.getElementsByClassName('hexagon');
+    for(let hexagon of hexagons) {
+      hexagon.remove();
+    }
+    const container = document.getElementById('hexagon-container');
+    container.innerHTML = "";
+
+    let lettersUsed = [];
+    for (let i = 0; i < 7; i++) {
+        const hexagon = document.createElement('div');
+        hexagon.className = 'hexagon';
+        let randomLetter = "";
+        let random = 0;
+        if(i<6) {
+          while(lettersUsed.indexOf(randomLetter) > -1 || randomLetter == "") {
+            random = Math.floor(Math.random() * outerLetters.length);
+            randomLetter = outerLetters[random].toUpperCase();
+          }
+          lettersUsed.push(randomLetter);
+        }
+        else {
+          randomLetter = centerLetter.toUpperCase();
+        }
+        hexagon.innerHTML = randomLetter;
+        hexagon.addEventListener('click', () => {
+            clickLetter(randomLetter);
+        });
+        hexagon.addEventListener('mouseover', () => {
+            hexagon.style.backgroundColor = '#ffff77';
+        });
+        hexagon.addEventListener('mouseout', () => {
+            hexagon.style.backgroundColor = '#eeee99';
+        });
+        container.appendChild(hexagon);
+        hexagonLetters[randomLetter] = hexagon;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    generateHexagons();
+    setupButtons();
+    document.addEventListener('keydown', handleKeyPress);
+});
+
+
 function clickLetter(letter){
   currentWord += letter;
   let thisDiv = document.getElementById("currentword");
